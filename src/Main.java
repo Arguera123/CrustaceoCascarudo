@@ -25,6 +25,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Mostrar resevas terminadas");
+                    reservas.reservasTerminadas();
                     break;
                 case 0:
                     System.out.println("Saliendo del programa");
