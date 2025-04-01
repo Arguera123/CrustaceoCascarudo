@@ -21,6 +21,7 @@ public class Main {
                     break;
                 case 2:
                     System.out.println("Mostrar reservas pendientes");
+                    reservas.reservasPendientes();
                     break;
                 case 3:
                     System.out.println("Mostrar resevas terminadas");
