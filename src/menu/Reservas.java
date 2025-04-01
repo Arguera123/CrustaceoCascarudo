@@ -65,7 +65,7 @@ public class Reservas {
                     edad, telefono, lugarTrabajo, fechaReserva, horaReserva, numeroReserva, tipoEvento);
 
             reservas.add(nuevaReserva);
-            reservasDTO.add(new ReservaDTO(nombreCliente, fechaReserva, horaReserva, tipoEvento.toString()));
+            reservasDTO.add(new ReservaDTO(numeroReserva, nombreCliente, fechaReserva, horaReserva, tipoEvento.toString()));
 
             return nuevaReserva; //Necesario??
         }
@@ -88,6 +88,7 @@ public class Reservas {
                     System.out.println("Reserva pendiente: " + reserva.getNombreCliente() +
                             ", Fecha: " + reserva.getFechaReserva() +
                             ", Hora: " + reserva.getHoraReserva() +
+                            ", Codigo de reserva: " + reserva.getNumeroReserva() +
                             ", Tipo de evento: " + reserva.getTipoEvento());
                     System.out.println("--------------------------------------------------");
                 }
@@ -99,6 +100,27 @@ public class Reservas {
 
     }
 
+    public void reservasTerminadas() {
+        Date fechaActual = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (ReservaDTO reserva : reservasDTO) {
+            String fechaReserva = reserva.getFechaReserva();
+            try {
+                Date fechaReservaDate = dateFormat.parse(fechaReserva);
+                if (fechaReservaDate.before(fechaActual)) {
+                    System.out.println("Reserva terminada: " + reserva.getNombreCliente() +
+                            ", Fecha: " + reserva.getFechaReserva() +
+                            ", Hora: " + reserva.getHoraReserva() +
+                            ", Codigo de reserva: " + reserva.getNumeroReserva() +
+                            ", Tipo de evento: " + reserva.getTipoEvento());
+                    System.out.println("--------------------------------------------------");
+                }
+            } catch (Exception e) {
+                System.out.println("Error al parsear la fecha de reserva: " + e.getMessage());
+            }
+        }
+    }
 
 
     private String gen_numero_reserva(String fecha, Integer evento){
