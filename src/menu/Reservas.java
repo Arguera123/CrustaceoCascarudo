@@ -1,12 +1,14 @@
 package menu;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Reservas {
     private static Integer contadorReservas = 0;
+    private static List<Reserva> reservas = new ArrayList<Reserva>();
+    private static List<ReservaDTO> reservasDTO = new ArrayList<ReservaDTO>();
 
     //Devuelve un objeto de tipo reserva
     public Reserva agregarReserva() {
@@ -59,8 +61,13 @@ public class Reservas {
             System.out.println("Fecha de reserva: " + fechaReserva);
             System.out.println("Hora de reserva: " + horaReserva);
 
+            Reserva nuevaReserva = new Reserva(nombreCliente, DUI, lugarResidencia,
+                    edad, telefono, lugarTrabajo, fechaReserva, horaReserva, numeroReserva, tipoEvento);
 
-            return new Reserva(nombreCliente, DUI, lugarResidencia, edad, telefono, lugarTrabajo, fechaReserva, horaReserva, numeroReserva, tipoEvento);
+            reservas.add(nuevaReserva);
+            reservasDTO.add(new ReservaDTO(nombreCliente, fechaReserva, horaReserva, tipoEvento.toString()));
+
+            return nuevaReserva; //Necesario??
         }
         catch (Exception e) {
             System.out.println("Error al ingresar los datos");
@@ -68,6 +75,31 @@ public class Reservas {
         }
 
     }
+
+    public void reservasPendientes() {
+        Date fechaActual = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        for (ReservaDTO reserva : reservasDTO) {
+            String fechaReserva = reserva.getFechaReserva();
+            try {
+                Date fechaReservaDate = dateFormat.parse(fechaReserva);
+                if (fechaReservaDate.after(fechaActual)) {
+                    System.out.println("Reserva pendiente: " + reserva.getNombreCliente() +
+                            ", Fecha: " + reserva.getFechaReserva() +
+                            ", Hora: " + reserva.getHoraReserva() +
+                            ", Tipo de evento: " + reserva.getTipoEvento());
+                    System.out.println("--------------------------------------------------");
+                }
+            } catch (Exception e) {
+                System.out.println("Error al parsear la fecha de reserva: " + e.getMessage());
+            }
+        }
+
+
+    }
+
+
 
     private String gen_numero_reserva(String fecha, Integer evento){
         contadorReservas++;
