@@ -10,14 +10,13 @@ public class Reserva{
     private String horaReserva;
     private String horaFinalizacion;
 
-    public Reserva(Persona persona, Evento evento, String fecha, String horaReserva,
-                   Integer numeroReserva, String horaFinalizacion) {
+    public Reserva(Persona persona, Evento evento, String codigoReserva, String fecha, String horaReserva, String horaFinalizacion) {
         this.persona = persona;
         this.evento = evento;
+        this.codigoReserva = codigoReserva;
         this.fechaReserva = fecha;
         this.horaReserva = horaReserva;
         this.horaFinalizacion = horaFinalizacion;
-        this.codigoReserva = gen_numero_reserva(fecha, evento.getCorrelativo(), numeroReserva);
     }
 
     public Persona getPersona() {
@@ -42,10 +41,5 @@ public class Reserva{
 
     public String getHoraFinalizacion() {
         return horaFinalizacion;
-    }
-
-    private String gen_numero_reserva(String fecha, String codigo, Integer numeroReserva) {
-        Random r = new Random();
-        return "KB-" + numeroReserva + "T" + codigo + r.nextInt(10) + fecha;
     }
 }

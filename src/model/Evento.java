@@ -4,15 +4,13 @@ public abstract class Evento {
     private String codigo;
     private Double precio;
     private Double anticipo;
-    private String correlativo;
     private Integer cantidadPersonas;
     private String comida;
 
-    public Evento(String codigo, Double precio, Double anticipo, String correlativo, Integer cantidadPersonas, String comida) {
+    public Evento(String codigo, Double precio, Double anticipo, Integer cantidadPersonas, String comida) {
         this.codigo = codigo;
         this.precio = precio;
         this.anticipo = anticipo;
-        this.correlativo = correlativo;
         this.cantidadPersonas = cantidadPersonas;
         this.comida = comida;
     }
@@ -39,14 +37,6 @@ public abstract class Evento {
 
     public void setAnticipo(Double anticipo) {
         this.anticipo = anticipo;
-    }
-
-    public String getCorrelativo() {
-        return correlativo;
-    }
-
-    public void setCorrelativo(String correlativo) {
-        this.correlativo = correlativo;
     }
 
     public Integer getCantidadPersonas() {

@@ -5,7 +5,7 @@ public class EventoFamiliar extends Evento {
     protected String bebidas;
 
     public EventoFamiliar(String codigo, Double precio, Double anticipo, String correlativo, Integer cantidadPersonas, String comida, String apellido, String bebidas) {
-        super(codigo, precio, anticipo, correlativo, cantidadPersonas, comida);
+        super(codigo, precio, anticipo, cantidadPersonas, comida);
         this.apellido = apellido;
         this.bebidas = bebidas;
     }

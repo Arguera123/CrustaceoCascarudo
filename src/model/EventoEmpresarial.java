@@ -7,7 +7,7 @@ public class EventoEmpresarial extends Evento {
     protected String postre;
 
     public EventoEmpresarial(String codigo, Double precio, Double anticipo, String correlativo, Integer cantidadPersonas, String comida, String nombreEmpresa, String tematicaColor, String codigoVestimenta, String postre) {
-        super(codigo, precio, anticipo, correlativo, cantidadPersonas, comida);
+        super(codigo, precio, anticipo, cantidadPersonas, comida);
         this.nombreEmpresa = nombreEmpresa;
         this.tematicaColor = tematicaColor;
         this.codigoVestimenta = codigoVestimenta;

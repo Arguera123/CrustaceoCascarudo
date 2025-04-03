@@ -67,21 +67,20 @@ public class Reservas {
 
 
 
-            String numeroReserva = "1";
-
-            System.out.println("Reserva creada con exito");
-            System.out.println("Numero de reserva: " + numeroReserva);
-            System.out.println("Fecha de reserva: " + fechaReserva);
-            System.out.println("Hora de reserva: " + horaReserva);
-
             Persona nuevaPersona = new Persona(nombreCliente, DUI, lugarResidencia, edad, telefono, lugarTrabajo);
 
             Evento evento = MenuEvento.createEvento();
+            String numeroReserva = gen_numero_reserva(fechaReserva, evento.getCodigo());
 
-            Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, Integer.parseInt(numeroReserva), horaFinalizacion);
+            Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, evento.getCodigo(), horaFinalizacion);
+
+            System.out.println("Reserva creada con exito");
+            System.out.println("Numero de reserva: " + nuevaReserva.getCodigoReserva());
+            System.out.println("Fecha de reserva: " + fechaReserva);
+            System.out.println("Hora de reserva: " + horaReserva);
 
             reservas.add(nuevaReserva);
-            reservasDTO.add(new ReservaDTO(numeroReserva, nombreCliente, fechaReserva, horaReserva, evento.getCodigo()));
+            reservasDTO.add(new ReservaDTO(nuevaReserva.getCodigoReserva(), nombreCliente, fechaReserva, horaReserva, evento.getCodigo()));
 
             return nuevaReserva; //Necesario??
         }
@@ -137,6 +136,20 @@ public class Reservas {
                 System.out.println("Error al parsear la fecha de reserva: " + e.getMessage());
             }
         }
+    }
+
+    private String gen_numero_reserva(String fecha, String evento){
+        contadorReservas++;
+        String codigo = switch (evento) {
+            case "HBD-E-01" -> "BD"; // Cumpleaños
+            case "EE-E-02" -> "AF"; // Almuerzo Familiar
+            case "ED-E-03" -> "CE"; // Cena Empresarial
+            case "EE-E-03" -> "AE"; // Almuerzo Empresarial
+            case "FD-E-04" -> "CF"; // Cena Familiar
+            default -> "XX"; // Error
+        };
+        Random r = new Random();
+        return "KB-" + contadorReservas + "T" + codigo + r.nextInt(10) + fecha;
     }
 
     private boolean isValidDate(String date) {
