@@ -1,11 +1,12 @@
 package model;
 
 public abstract class Evento {
-    private String codigo;
-    private Double precio;
-    private Double anticipo;
-    private Integer cantidadPersonas;
-    private String comida;
+    protected String codigo;
+    protected Double precio;
+    protected Double anticipo;
+    protected Integer cantidadPersonas;
+    protected String comida;
+
 
     public Evento(String codigo, Double precio, Double anticipo, Integer cantidadPersonas, String comida) {
         this.codigo = codigo;

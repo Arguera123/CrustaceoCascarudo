@@ -69,7 +69,7 @@ public class Reservas {
 
             Persona nuevaPersona = new Persona(nombreCliente, DUI, lugarResidencia, edad, telefono, lugarTrabajo);
 
-            Evento evento = MenuEvento.createEvento();
+            Evento evento = MenuEvento.createEvento(horaReserva);
             String numeroReserva = gen_numero_reserva(fechaReserva, evento.getCodigo());
 
             Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, evento.getCodigo(), horaFinalizacion);

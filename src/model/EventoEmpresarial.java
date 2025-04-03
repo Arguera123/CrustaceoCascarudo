@@ -1,12 +1,15 @@
 package model;
 
 public class EventoEmpresarial extends Evento {
-    protected String nombreEmpresa;
-    protected String tematicaColor;
-    protected String codigoVestimenta;
-    protected String postre;
+    private String nombreEmpresa;
+    private String tematicaColor;
+    private String codigoVestimenta;
+    private String postre;
 
-    public EventoEmpresarial(String codigo, Double precio, Double anticipo, String correlativo, Integer cantidadPersonas, String comida, String nombreEmpresa, String tematicaColor, String codigoVestimenta, String postre) {
+
+    public EventoEmpresarial(String codigo, Double precio, Double anticipo, Integer cantidadPersonas,
+                             String comida, String nombreEmpresa, String tematicaColor, String codigoVestimenta,
+                             String postre) {
         super(codigo, precio, anticipo, cantidadPersonas, comida);
         this.nombreEmpresa = nombreEmpresa;
         this.tematicaColor = tematicaColor;
