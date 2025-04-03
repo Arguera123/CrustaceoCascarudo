@@ -1,18 +1,19 @@
-package menu;
+package dto;
 
 public class ReservaDTO {
     private String numeroReserva;
     private String nombreCliente;
     private String fechaReserva;
     private String horaReserva;
-    private String TipoEvento;
+    private String tipoEvento;
+    private String horaFinalizacion;
 
     public ReservaDTO(String numeroReserva, String nombreCliente, String fechaReserva, String horaReserva, String tipoEvento) {
         this.numeroReserva = numeroReserva;
         this.nombreCliente = nombreCliente;
         this.fechaReserva = fechaReserva;
         this.horaReserva = horaReserva;
-        TipoEvento = tipoEvento;
+        this.tipoEvento = tipoEvento;
     }
 
     public String getNumeroReserva() {
@@ -32,6 +33,6 @@ public class ReservaDTO {
     }
 
     public String getTipoEvento() {
-        return TipoEvento;
+        return tipoEvento;
     }
 }

@@ -1,5 +1,10 @@
 package menu;
 
+import dto.ReservaDTO;
+import model.Evento;
+import model.Persona;
+import model.Reserva;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -25,7 +30,7 @@ public class Reservas {
             String lugarResidencia = scanner.nextLine();
 
             System.out.println("Edad: ");
-            Integer edad = scanner.nextInt();
+            Integer edad = Integer.parseInt(scanner.nextLine());
 
             System.out.println("Telefono: ");
             String telefono = scanner.nextLine();
@@ -35,41 +40,53 @@ public class Reservas {
 
             System.out.println("Ingrese fecha de reserva (Formato DD/MM/AAAA): ");
             String fechaReserva = scanner.nextLine();
+
             // Validar fecha
-            if(!isValidDate(fechaReserva)){
-                throw new Exception();
+            while (!isValidDate(fechaReserva)) {
+                System.out.println("Fecha de reserva incorrecta vuelva a digitar (Formato DD/MM/AAAA): ");
+                fechaReserva = scanner.nextLine();
             }
 
             System.out.println("Ingrese hora de reserva (Formato HH:MM): ");
             String horaReserva = scanner.nextLine();
+
             // Validar hora
-            if(!isValidHour(horaReserva)){
-                throw new Exception();
+            while (!isValidHour(horaReserva)) {
+                System.out.println("Hora de reserva incorrecta vuelva a digitar (Formato HH:MM): ");
+                horaReserva = scanner.nextLine();
             }
 
-            System.out.println("Tipo de evento:");
-            System.out.println("1. Cumpleaños\n2. Almuerzo Familiar\n3. Cena Empresarial\n4. Almuerzo empresarial\n5. Cena Familiar");
-            Integer tipoEvento = scanner.nextInt();
-            if(tipoEvento > 5 || tipoEvento < 1){
-                throw new Exception();
+            System.out.println("Ingrese hora de que finaliza la reserva (Formato HH:MM): ");
+            String horaFinalizacion = scanner.nextLine();
+
+            // Validar hora
+            while (!isValidHour(horaFinalizacion)) {
+                System.out.println("Hora de reserva incorrecta vuelva a digitar (Formato HH:MM): ");
+                horaFinalizacion = scanner.nextLine();
             }
 
-            String numeroReserva = gen_numero_reserva(fechaReserva, tipoEvento);
+
+
+            String numeroReserva = "1";
 
             System.out.println("Reserva creada con exito");
             System.out.println("Numero de reserva: " + numeroReserva);
             System.out.println("Fecha de reserva: " + fechaReserva);
             System.out.println("Hora de reserva: " + horaReserva);
 
-            Reserva nuevaReserva = new Reserva(nombreCliente, DUI, lugarResidencia,
-                    edad, telefono, lugarTrabajo, fechaReserva, horaReserva, numeroReserva, tipoEvento);
+            Persona nuevaPersona = new Persona(nombreCliente, DUI, lugarResidencia, edad, telefono, lugarTrabajo);
+
+            Evento evento = MenuEvento.createEvento();
+
+            Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, Integer.parseInt(numeroReserva), horaFinalizacion);
 
             reservas.add(nuevaReserva);
-            reservasDTO.add(new ReservaDTO(numeroReserva, nombreCliente, fechaReserva, horaReserva, tipoEvento.toString()));
+            reservasDTO.add(new ReservaDTO(numeroReserva, nombreCliente, fechaReserva, horaReserva, evento.getCodigo()));
 
             return nuevaReserva; //Necesario??
         }
         catch (Exception e) {
+            System.out.println(e.getMessage());
             System.out.println("Error al ingresar los datos");
             return null;
         }
@@ -120,21 +137,6 @@ public class Reservas {
                 System.out.println("Error al parsear la fecha de reserva: " + e.getMessage());
             }
         }
-    }
-
-
-    private String gen_numero_reserva(String fecha, Integer evento){
-        contadorReservas++;
-        String codigo = switch (evento) {
-            case 1 -> "BD"; // Cumpleaños
-            case 2 -> "AF"; // Almuerzo Familiar
-            case 3 -> "CE"; // Cena Empresarial
-            case 4 -> "AE"; // Almuerzo Empresarial
-            case 5 -> "CF"; // Cena Familiar
-            default -> "XX"; // Error
-        };
-        Random r = new Random();
-        return "KB-" + contadorReservas + "T" + codigo + r.nextInt(10) + fecha;
     }
 
     private boolean isValidDate(String date) {
