@@ -6,16 +6,19 @@ public abstract class Evento {
     protected Double anticipo;
     protected Integer cantidadPersonas;
     protected String comida;
+    protected String bebida;
 
     public Evento() {
     }
 
-    public Evento(String codigo, Double precio, Double anticipo, Integer cantidadPersonas, String comida) {
+    public Evento(String codigo, Double precio, Double anticipo, Integer cantidadPersonas,
+                  String comida, String bebida) {
         this.codigo = codigo;
         this.precio = precio;
         this.anticipo = anticipo;
         this.cantidadPersonas = cantidadPersonas;
         this.comida = comida;
+        this.bebida = bebida;
     }
 
     public String getCodigo() {
@@ -56,6 +59,14 @@ public abstract class Evento {
 
     public void setComida(String comida) {
         this.comida = comida;
+    }
+
+    public String getBebida() {
+        return bebida;
+    }
+
+    public void setBebida(String bebida) {
+        this.bebida = bebida;
     }
 }
 

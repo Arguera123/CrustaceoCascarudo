@@ -9,9 +9,9 @@ public class EventoEmpresarial extends Evento {
     public EventoEmpresarial() {}
 
     public EventoEmpresarial(String codigo, Double precio, Double anticipo, Integer cantidadPersonas,
-                             String comida, String nombreEmpresa, String tematicaColor, String codigoVestimenta,
-                             String postre) {
-        super(codigo, precio, anticipo, cantidadPersonas, comida);
+                             String comida, String bebida, String nombreEmpresa, String tematicaColor,
+                             String codigoVestimenta, String postre) {
+        super(codigo, precio, anticipo, cantidadPersonas, comida, bebida);
         this.nombreEmpresa = nombreEmpresa;
         this.tematicaColor = tematicaColor;
         this.codigoVestimenta = codigoVestimenta;

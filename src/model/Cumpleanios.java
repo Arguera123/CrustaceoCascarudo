@@ -9,8 +9,8 @@ public class Cumpleanios extends Evento {
     private Double anticipo;
 
     public Cumpleanios(String codigo, double precio, String nombreCumpleaniero, int edadCumpleaniero, String colorFavorito,
-                       int cantidadPersonas, String modalidadRegalo, Double anticipo, String comida) {
-        super(codigo, precio, anticipo, cantidadPersonas, comida);
+                       int cantidadPersonas, String modalidadRegalo, Double anticipo, String comida, String bebida) {
+        super(codigo, precio, anticipo, cantidadPersonas, comida, bebida);
         this.nombreCumpleaniero = nombreCumpleaniero;
         this.edadCumpleaniero = edadCumpleaniero;
         this.colorFavorito = colorFavorito;

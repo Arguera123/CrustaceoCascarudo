@@ -53,7 +53,6 @@ public class MenuEvento {
                 System.out.println("Opcion no valida");
                 break;
         }
-        scanner.close();
         return evento;
     }
 
@@ -84,9 +83,12 @@ public class MenuEvento {
         scanner.nextLine();
 
         String comida = MenuComida.selectComida("comidaNormal");
+        String bebida = MenuComida.selectComida("bebidaNormal");
+
+
         return new Cumpleanios(
-                CODIGO_CUMPLEANIOS, PRECIO_CUMPLEANIOS, nombre, edad,
-                colorFavorito, cantidadPersonas, modalidad, anticipo, comida
+                CODIGO_CUMPLEANIOS, PRECIO_CUMPLEANIOS, nombre, edad, colorFavorito,
+                cantidadPersonas, modalidad, anticipo, comida, bebida
         );
     }
 
@@ -118,6 +120,7 @@ public class MenuEvento {
         String codigoVestimenta = scanner.nextLine();
 
         String comida = MenuComida.selectComida("comidaEmpresarial");
+        String bebida = MenuComida.selectComida("bebidaEmpresarial");
 
         System.out.println("Postre: ");
         String postre = scanner.nextLine();
@@ -132,7 +135,7 @@ public class MenuEvento {
 
         return new EventoEmpresarial(
                 codigo, precio, anticipo, cantidadPersonas, comida, nombreEmpresa, tematicaColor,
-                codigoVestimenta, postre
+                codigoVestimenta, postre, bebida
         );
     }
 
@@ -158,7 +161,7 @@ public class MenuEvento {
         scanner.nextLine();
 
         String comida = MenuComida.selectComida("comidaNormal");
-        String bebidas = MenuComida.selectComida("bebidaNormal");
+        String bebida = MenuComida.selectComida("bebidaNormal");
 
         if(determinarCenaAlumerzo(horaReserva).equals("ALMUERZO")) {
             codigo = CODIGO_ALMUERZO_FAMILIAR;
@@ -168,7 +171,7 @@ public class MenuEvento {
             precio = PRECIO_CENA_FAMILIAR;
         }
 
-        return new EventoFamiliar(codigo, precio, anticipo, cantidadPersonas, comida, apellido, bebidas);
+        return new EventoFamiliar(codigo, precio, anticipo, cantidadPersonas, comida, apellido, bebida);
     }
 
     /**
