@@ -14,6 +14,7 @@ public class Reservas {
     private static Integer contadorReservas = 0;
     private static List<Reserva> reservas = new ArrayList<Reserva>();
     private static List<ReservaDTO> reservasDTO = new ArrayList<ReservaDTO>();
+    private MenuEvento menuEvento = new MenuEvento();
 
     //Devuelve un objeto de tipo reserva
     public Reserva agregarReserva() {
@@ -65,11 +66,9 @@ public class Reservas {
                 horaFinalizacion = scanner.nextLine();
             }
 
-
-
             Persona nuevaPersona = new Persona(nombreCliente, DUI, lugarResidencia, edad, telefono, lugarTrabajo);
 
-            Evento evento = MenuEvento.createEvento(horaReserva);
+            Evento evento = menuEvento.createEvento(horaReserva);
             String numeroReserva = gen_numero_reserva(fechaReserva, evento.getCodigo());
 
             Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, evento.getCodigo(), horaFinalizacion);

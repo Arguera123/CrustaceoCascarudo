@@ -6,6 +6,7 @@ public class EventoEmpresarial extends Evento {
     private String codigoVestimenta;
     private String postre;
 
+    public EventoEmpresarial() {}
 
     public EventoEmpresarial(String codigo, Double precio, Double anticipo, Integer cantidadPersonas,
                              String comida, String nombreEmpresa, String tematicaColor, String codigoVestimenta,
