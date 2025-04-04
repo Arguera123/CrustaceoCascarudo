@@ -11,7 +11,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Reservas {
-    private static Integer contadorReservas = 0;
     private static List<Reserva> reservas = new ArrayList<Reserva>();
     private static List<ReservaDTO> reservasDTO = new ArrayList<ReservaDTO>();
     private MenuEvento menuEvento = new MenuEvento();
@@ -89,7 +88,6 @@ public class Reservas {
             System.out.println("Error al ingresar los datos");
             return null;
         }
-
     }
 
     public void reservasPendientes() {
@@ -112,8 +110,6 @@ public class Reservas {
                 System.out.println("Error al parsear la fecha de reserva: " + e.getMessage());
             }
         }
-
-
     }
 
     public void reservasTerminadas() {
@@ -139,7 +135,6 @@ public class Reservas {
     }
 
     private String gen_numero_reserva(String fecha, String evento){
-        contadorReservas++;
         String codigo = switch (evento) {
             case "HBD-E-01" -> "BD"; // Cumpleaños
             case "EE-E-02" -> "AF"; // Almuerzo Familiar
@@ -149,7 +144,9 @@ public class Reservas {
             default -> "XX"; // Error
         };
         Random r = new Random();
-        return "KB-" + contadorReservas + "T" + codigo + r.nextInt(10) + fecha;
+        return "KB-" + Integer.toString(r.nextInt(10)) + Integer.toString(r.nextInt(10)) +
+                "T" + codigo + r.nextInt(10) + "-" +
+                fecha.replace("/", "");
     }
 
     private boolean isValidDate(String date) {
