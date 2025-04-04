@@ -7,6 +7,8 @@ public abstract class Evento {
     protected Integer cantidadPersonas;
     protected String comida;
 
+    public Evento() {
+    }
 
     public Evento(String codigo, Double precio, Double anticipo, Integer cantidadPersonas, String comida) {
         this.codigo = codigo;
