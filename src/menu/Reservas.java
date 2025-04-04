@@ -71,7 +71,8 @@ public class Reservas {
             Evento evento = menuEvento.createEvento(horaReserva);
             String numeroReserva = gen_numero_reserva(fechaReserva, evento.getCodigo());
 
-            Reserva nuevaReserva = new Reserva(nuevaPersona, evento, fechaReserva, horaReserva, evento.getCodigo(), horaFinalizacion);
+            Reserva nuevaReserva =
+                    new Reserva(nuevaPersona, evento, numeroReserva, fechaReserva, horaReserva, horaFinalizacion);
 
             System.out.println("Reserva creada con exito");
             System.out.println("Numero de reserva: " + nuevaReserva.getCodigoReserva());
