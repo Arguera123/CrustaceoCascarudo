@@ -1,4 +1,6 @@
+import menu.MenuComida;
 import menu.Reservas;
+import model.Comida;
 
 import java.util.Scanner;
 
@@ -35,6 +37,5 @@ public class Main {
                     System.out.println("Opcion no valida");
             }
         }
-
     }
 }
