@@ -78,6 +78,13 @@ public class MenuEvento {
         Integer cantidadPersonas = scanner.nextInt();
         scanner.nextLine();
 
+        while(cantidadPersonas < 50 || cantidadPersonas > 75) {
+            System.out.println("La cantidad de personas debe ser minimo 50 y maximo 75");
+            System.out.println("Digite otra vez la cantidad: ");
+            cantidadPersonas = scanner.nextInt();
+            scanner.nextLine();
+        }
+
         System.out.println("Anticipo: ");
         Double anticipo = scanner.nextDouble();
         scanner.nextLine();
@@ -109,6 +116,13 @@ public class MenuEvento {
         System.out.println("Cantidad de personas: ");
         Integer cantidadPersonas = scanner.nextInt();
         scanner.nextLine();
+
+        while(cantidadPersonas < 10 || cantidadPersonas > 40) {
+            System.out.println("La cantidad de personas debe ser minimo 10 y maximo 40");
+            System.out.println("Digite otra vez la cantidad: ");
+            cantidadPersonas = scanner.nextInt();
+            scanner.nextLine();
+        }
 
         System.out.println("Nombre de la empresa: ");
         String nombreEmpresa = scanner.nextLine();
@@ -159,6 +173,13 @@ public class MenuEvento {
         System.out.println("Cantidad de personas: ");
         Integer cantidadPersonas = scanner.nextInt();
         scanner.nextLine();
+
+        while(cantidadPersonas < 4 || cantidadPersonas > 10) {
+            System.out.println("La cantidad de personas debe ser minimo 4 y maximo 10");
+            System.out.println("Digite otra vez la cantidad: ");
+            cantidadPersonas = scanner.nextInt();
+            scanner.nextLine();
+        }
 
         String comida = MenuComida.selectComida("comidaNormal");
         String bebida = MenuComida.selectComida("bebidaNormal");
