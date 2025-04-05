@@ -175,7 +175,7 @@ public class MenuEvento {
         scanner.nextLine();
 
         while(cantidadPersonas < 4 || cantidadPersonas > 15) {
-            System.out.println("La cantidad de personas debe ser minimo 4 y maximo 10");
+            System.out.println("La cantidad de personas debe ser minimo 4 y maximo 15");
             System.out.println("Digite otra vez la cantidad: ");
             cantidadPersonas = scanner.nextInt();
             scanner.nextLine();
